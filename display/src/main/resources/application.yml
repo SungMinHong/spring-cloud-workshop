@@ -15,10 +15,18 @@ hystrix:
     circuitBreaker:
       requestVolumeThreshold: 1 # Minimum number of request to calculate circuit breaker's health. default 20
       errorThresholdPercentage: 50 # Error percentage to open circuit. default 50
+    FeginProductRemoteService#getProductInfo(String):  # command key. use 'default' for global setting.
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 500
+      circuitBreaker:
+        requestVolumeThreshold: 1 # Minimum number of request to calculate circuit breaker's health. default 20
+        errorThresholdPercentage: 50 # Error percentage to open circuit. default 50
 
 product:
   ribbon:
-#    listOfServers: localhost:8082, localhost:7777
+    #    listOfServers: localhost:8082, localhost:7777
     #listOfServers 가 없으면 유레카에서 가져오게 됨
     MaxAutoRetries: 0
     MaxAutoRetriesNextServer: 1
@@ -29,3 +37,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka # default address
+
+feign:
+  hystrix:
+    enabled: true
