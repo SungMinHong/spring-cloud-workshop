@@ -14,6 +14,11 @@ public class ProductController {
 
     @GetMapping("/{productId}")
     public String getProduct(@PathVariable String productId) {
+//        throwRuntimeException();
+        return makeSleepTime(productId);
+    }
+
+    private String makeSleepTime(String productId) {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -21,6 +26,9 @@ public class ProductController {
         }
         System.out.println("Called product id " + productId);
         return "[product id = " + productId + " at " + System.currentTimeMillis() + "]";
+    }
+    private void throwRuntimeException() {
+        throw new RuntimeException("I/O Exception");
     }
 }
 
