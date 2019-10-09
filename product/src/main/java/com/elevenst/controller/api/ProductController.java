@@ -15,7 +15,8 @@ public class ProductController {
     @GetMapping("/{productId}")
     public String getProduct(@PathVariable String productId) {
 //        throwRuntimeException();
-        return makeSleepTime(productId);
+//        makeSleepTime(productId);
+        return getResult(productId);
     }
 
     private String makeSleepTime(String productId) {
@@ -25,8 +26,13 @@ public class ProductController {
             e.printStackTrace();
         }
         System.out.println("Called product id " + productId);
+        return getResult(productId);
+    }
+
+    private String getResult(String productId) {
         return "[product id = " + productId + " at " + System.currentTimeMillis() + "]";
     }
+
     private void throwRuntimeException() {
         throw new RuntimeException("I/O Exception");
     }
