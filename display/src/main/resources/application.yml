@@ -4,3 +4,11 @@ server:
 spring:
   application:
     name: display
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
